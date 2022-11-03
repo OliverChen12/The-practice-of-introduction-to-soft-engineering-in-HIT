@@ -1,1 +1,10 @@
-# The-practice-of-introduction-to-soft-engineering-in-HIT
+# 哈工大软工导论实践（大作业）火炬
+
+## 环境:Android Studio、Java 11、Gradle和SDK版本以项目为准
+
+### 第一个小米笔记难度还可以，建议自己做（当然我也上传了现成的XD）
+
+### 第二个空巢老人很麻烦，从凌晨一点部署到了凌晨五点，主要是因为版本太老，来回修改配置
+
+2021级第一次开软工导论，希望这份火炬能帮到后来的同学XD
+
