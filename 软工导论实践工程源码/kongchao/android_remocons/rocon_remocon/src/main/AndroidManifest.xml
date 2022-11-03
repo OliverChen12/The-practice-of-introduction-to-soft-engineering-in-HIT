@@ -1,0 +1,520 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+      package="com.github.rosjava.android_remocons.rocon_remocon"
+      xmlns:tools="http://schemas.android.com/tools">
+
+    <permission android:name="com.lituo.linphone.permission.C2D_MESSAGE" android:protectionLevel="signature" /> <!-- Change package ! -->
+    <uses-permission android:name="com.lituo.linphone.permission.C2D_MESSAGE" />  <!-- Change package ! -->
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS"/>
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <!-- Needed to allow Linphone to install on tablets, since android.permission.CALL_PHONE implies android.hardware.telephony is required -->
+    <uses-feature 	 android:name="android.hardware.telephony" android:required="false" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.CAMERA" />
+    <!-- Needed to allow Linphone to install on tablets, since android.permission.CAMERA implies android.hardware.camera and android.hardware.camera.autofocus are required -->
+    <uses-feature 	 android:name="android.hardware.camera" android:required="false" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <!-- Needed to store received images if the user wants to -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <!-- Needed to use our own Contact editor -->
+    <uses-permission android:name="android.permission.WRITE_CONTACTS"/>
+    <!-- Needed to route the audio to the bluetooth headset if available -->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
+    <!-- Needed to pre fill the wizard email field (only if enabled in custom settings) -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE"/>
+    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS"/>
+    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS"/>
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS"/>
+    <!-- Needed for in-app purchase -->
+    <uses-permission android:name="com.android.vending.BILLING" />
+    <!-- Needed for overlay widget -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.NFC" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission  android:name="android.permission.CHANGE_CONFIGURATION" />
+
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.DEVICE_POWER" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <supports-screens android:smallScreens="true" android:normalScreens="true" android:largeScreens="true" android:xlargeScreens="true" android:anyDensity="true"/>
+
+
+    <application android:label="@string/app_name"
+                 android:icon="@drawable/img1"
+                 tools:replace="icon, label">
+        <provider
+            android:name=".Database"
+            android:authorities="com.github.rosjava.android_remocons.rocon_remocon"
+        />
+
+        <activity android:name="com.github.rosjava.android_remocons.rocon_remocon.WelcomActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name="com.github.rosjava.android_remocons.rocon_remocon.Remocon"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.AppCompat">
+            <intent-filter>
+                <action android:name="com.github.rosjava.android_remocons.rocon_remocon.Remocon" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".fall_dectect.NewListener"
+            android:icon="@mipmap/icon"
+            android:theme="@style/Theme.AppCompat">
+            <intent-filter>
+                <action android:name="com.github.rosjava.android_remocons.rocon_remocon.fall_dectect.NewListener" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+        </activity>
+        <activity android:name=".fall_dectect.FallDialog"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            <intent-filter>
+                <action android:name="com.github.rosjava.android_remocons.rocon_remocon.fall_dectect.FallDialog" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".MasterChooser" />
+        <activity android:name=".NfcLauncherActivity"
+                  android:label="NFC tag launcher">
+            <intent-filter>
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.github.rosjava.android_remocons.common_tools.nfc.NfcReaderActivity" />
+
+        <service android:name="org.ros.android.NodeMainExecutorService" >
+            <intent-filter>
+                <action android:name="org.ros.android.NodeMainExecutorService" />
+            </intent-filter>
+        </service>
+
+
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme"
+            android:configChanges="orientation|screenSize"/>
+
+        <activity
+            android:name=".motion_control.MotionControl"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape">
+            <intent-filter>
+                <action android:name="com.github.rosjava.android_remocons.rocon_remocon.motion_control.MOTION" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+        </activity>
+
+        <activity android:name=".follower.FollowerActivity"
+            android:screenOrientation="landscape"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="com.github.rosjava.android_remocons.rocon_remocon.follower.FollowerActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".panorama.PanoramaActivity"
+            android:label="Turtlebot Panorama"
+            android:configChanges="orientation|screenSize">
+            <intent-filter>
+                <action android:name="com.github.rosjava.android_remocons.rocon_remocon.panorama.PanoramaActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".fall_dectect.FallDetectedActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            <intent-filter>
+                <action android:name="com.github.rosjava.android_remocons.rocon_remocon.fall_detect.Fall"/>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+
+        </activity>
+
+        <activity
+            android:theme="@style/AppTheme"
+            android:name=".TestActivity">
+            <intent-filter>
+                <action android:name="com.github.rosjava.android_remocons.rocon_remocon.TEST" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".medicine_alert.Talker"
+            android:label="闹钟">
+            <intent-filter>
+                <action android:name="com.github.rosjava.android_remocons.rocon_remocon.medicine_alert.Talker" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <provider
+            android:name=".medicine_alert.AlarmProvider"
+            android:authorities="com.github.rosjava.android_remocons.rocon_remocon"
+            android:exported="true" />
+
+        <activity
+            android:name=".medicine_alert.DeskClockMainActivity"
+            android:configChanges="orientation|keyboardHidden|keyboard|navigation"
+            android:icon="@drawable/clock_launcher"
+            android:label="@string/app_name"
+            android:launchMode="singleInstance"
+            android:theme="@android:style/Theme.Wallpaper.NoTitleBar">
+
+            <!-- while docked, this is our home application -->
+            <meta-data
+                android:name="android.dock_home"
+                android:value="true" />
+
+            <intent-filter>
+                <action android:name="com.github.rosjava.android_remocons.rocon_remocon.medicine_alert.DESKCLOCK" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".medicine_alert.SetAlarm"
+            android:configChanges="orientation|keyboardHidden|keyboard|navigation"
+            android:label="@string/set_alarm" />
+        <activity
+            android:name=".medicine_alert.SettingsActivity"
+            android:excludeFromRecents="true"
+            android:label="@string/settings"
+            android:taskAffinity="">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".medicine_alert.AlarmAlertFullScreen"
+            android:configChanges="orientation|keyboardHidden|keyboard|navigation"
+            android:excludeFromRecents="true"
+            android:launchMode="singleInstance"
+            android:taskAffinity=""
+            android:theme="@android:style/Theme.Wallpaper.NoTitleBar" />
+
+        <receiver android:name=".medicine_alert.AlarmReceiver">
+            <intent-filter>
+                <action android:name="com.github.rosjava.android_remocons.rocon_remocon.medicine_alert.ALARM_ALERT" />
+                <action android:name="alarm_killed" />
+                <action android:name="cancel_snooze" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name=".medicine_alert.AlarmAlert"
+            android:configChanges="orientation|keyboardHidden|keyboard|navigation"
+            android:excludeFromRecents="true"
+            android:launchMode="singleInstance"
+            android:taskAffinity=""
+            android:theme="@style/alarm_alert" />
+        <activity
+            android:name=".medicine_alert.HandleSetAlarm"
+            android:excludeFromRecents="true"
+            android:permission="com.android.alarm.permission.SET_ALARM"
+            android:theme="@android:style/Theme.NoDisplay">
+            <intent-filter>
+                <action android:name="android.intent.action.SET_ALARM" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+
+        <!--
+            下面这一段是linphone的manifest文档粘贴过来的
+        -->
+        <activity android:name=".linphone.LinphoneLauncherActivity"
+            android:label="@string/app_name"
+            android:windowSoftInputMode="adjustPan|stateHidden"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+
+            <intent-filter>
+                <action android:name="com.github.rosjava.android_remocons.rocon_remocon.linphone.LinphoneLauncherActivity"/>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.CALL" />
+                <action android:name="android.intent.action.CALL_PRIVILEGED" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="tel" />
+                <data android:scheme="sip" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.SENDTO" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="sip" />
+                <data android:scheme="imto" />
+            </intent-filter>
+
+            <intent-filter>
+                <data android:mimeType="@string/sync_mimetype" /> <!-- Change package in res/values/non_localizable_custom.xml ! -->
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+        </activity>
+
+        <activity android:name=".linphone.LinphoneActivity"
+            android:theme="@style/NoTitle"
+            android:screenOrientation="behind"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".linphone.CallIncomingActivity"
+            android:theme="@style/NoTitle"
+            android:launchMode="singleTop"
+            android:screenOrientation="behind">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".linphone.CallOutgoingActivity"
+            android:theme="@style/NoTitle"
+            android:launchMode="singleTop"
+            android:screenOrientation="behind">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".linphone.CallActivity"
+            android:theme="@style/FullScreen"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+
+            <!--<intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <data android:mimeType="audio/*" />
+                <data android:mimeType="video/*" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>-->
+        </activity>
+
+        <activity android:name=".linphone.assistant.AssistantActivity"
+            android:theme="@style/NoTitle"
+            android:screenOrientation="behind">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".linphone.purchase.InAppPurchaseActivity"
+            android:theme="@style/NoTitle"
+            android:screenOrientation="nosensor">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".linphone.assistant.RemoteProvisioningLoginActivity"
+            android:theme="@style/NoTitle"
+            android:screenOrientation="nosensor">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".linphone.assistant.RemoteProvisioningActivity"
+            android:theme="@style/NoTitle"
+            android:screenOrientation="nosensor">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+
+            <intent-filter>
+                <data android:scheme="linphone-config" /> <!-- Change if needed -->
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <service android:name=".linphone.LinphoneService"
+            android:label="@string/service_name"
+            android:stopWithTask="false"/>
+
+        <service
+            android:name=".linphone.sync.SyncService"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.content.SyncAdapter" />
+            </intent-filter>
+            <meta-data android:name="android.content.SyncAdapter" android:resource="@xml/syncadapter" />
+            <meta-data android:name="android.provider.CONTACTS_STRUCTURE" android:resource="@xml/contacts" />
+        </service>
+
+        <service
+            android:name=".linphone.sync.AuthenticationService">
+            <intent-filter>
+                <action android:name="android.accounts.AccountAuthenticator"/>
+            </intent-filter>
+            <meta-data
+                android:name="android.accounts.AccountAuthenticator"
+                android:resource="@xml/authenticator" />
+        </service>
+
+        <receiver android:name=".linphone.NetworkManager">
+            <intent-filter><action android:name="android.net.conn.CONNECTIVITY_CHANGE"></action></intent-filter>
+        </receiver>
+
+        <receiver android:name=".linphone.BluetoothManager" android:enabled="false">
+        </receiver>
+
+        <receiver android:name=".linphone.BootReceiver">
+            <intent-filter><action android:name="android.intent.action.BOOT_COMPLETED"></action></intent-filter>
+            <intent-filter><action android:name="android.intent.action.ACTION_SHUTDOWN"></action></intent-filter>
+        </receiver>
+
+        <receiver android:name=".linphone.PhoneStateChangedReceiver">
+            <intent-filter><action android:name="android.intent.action.PHONE_STATE" /></intent-filter>
+        </receiver>
+
+        <!-- This one needs to be registered from application -->
+        <receiver android:name=".linphone.KeepAliveReceiver"/>
+
+        <!-- Needed for push notification -->
+        <receiver android:name=".linphone.gcm.GCMReceiver" android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+                <category android:name="com.lituo.linphone" /> <!-- Change package ! -->
+            </intent-filter>
+        </receiver>
+
+        <service android:name=".linphone.gcm.GCMService" />
+
+        <activity android:name=".linphone.tutorials.TutorialLauncherActivity"
+            android:theme="@style/NoTitle">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".linphone.tutorials.TutorialBuddyStatusActivity"
+            android:theme="@style/NoTitle">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".linphone.tutorials.TutorialChatRoomActivity"
+            android:theme="@style/NoTitle">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".linphone.tutorials.TutorialHelloWorldActivity"
+            android:theme="@style/NoTitle">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".linphone.tutorials.TutorialRegistrationActivity"
+            android:theme="@style/NoTitle">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".linphone.tutorials.TutorialCardDavSync"
+            android:theme="@style/NoTitle">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <!--
+             This service receives the same intent as AlarmReceiver but it does
+             not respond to the same broadcast. The AlarmReceiver will receive
+             the alert broadcast and will start this service with the same
+             intent. The service plays the alarm alert and vibrates the device.
+             This allows the alert to continue playing even if another activity
+             causes the AlarmAlert activity to pause.
+        -->
+        <service
+            android:name=".medicine_alert.AlarmKlaxon"
+            android:description="@string/alarm_klaxon_service_desc">
+            <intent-filter>
+                <action android:name="com.github.rosjava.android_remocons.rocon_remocon.medicine_alert.ALARM_ALERT" />
+            </intent-filter>
+        </service>
+
+        <receiver android:name=".medicine_alert.AlarmInitReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.TIME_SET" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+                <action android:name="android.intent.action.LOCALE_CHANGED" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name=".send_inst.SendInst"
+            android:theme="@style/AppTheme" >
+            <intent-filter>
+                <action android:name="com.github.rosjava.android_remocons.rocon_remocon.send_inst.SendInst"/>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
